@@ -17,33 +17,31 @@ export const NodeCatalog: React.FC<NodeCatalogProps> = ({
 }) => {
   return (
     <div className="p-4">
-      <Card className="shadow-none border-none">
+      <Card className="bg-white border border-gray-200 rounded-lg shadow-sm">
         <CardHeader className="pb-3">
-          <CardTitle className="text-xl font-semibold text-foreground">
+          <CardTitle className="text-xl font-semibold">
             Catalogue de composants
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-gray-500">
               Glissez-déposez les éléments sur le plan pour les ajouter
             </p>
             <div className="grid grid-cols-1 gap-3">
               {nodeCatalog.map((item, index) => (
                 <div
                   key={index}
-                  className="border border-gray-200 rounded-lg p-3 cursor-move bg-background hover:bg-accent transition-colors flex items-center gap-3 shadow-sm"
+                  className="bg-white rounded-lg border border-gray-200 p-4 flex items-center gap-3 cursor-move hover:bg-gray-50 transition-colors"
                   draggable
                   onDragStart={(event) =>
                     onDragStart(event, item.type, item.data)
                   }
                 >
-                  <div className="text-2xl text-primary">{item.icon}</div>
+                  <div className="text-2xl text-blue-600">{item.icon}</div>
                   <div>
-                    <div className="font-medium text-foreground">
-                      {item.label}
-                    </div>
-                    <div className="text-xs text-muted-foreground">
+                    <div className="font-medium">{item.label}</div>
+                    <div className="text-xs text-gray-500">
                       {item.data.label}
                     </div>
                   </div>

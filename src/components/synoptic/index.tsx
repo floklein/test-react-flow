@@ -3,6 +3,7 @@ import {
   Connection,
   Node,
   ReactFlowInstance,
+  ReactFlowProvider,
   addEdge,
   useEdgesState,
   useNodesState,
@@ -23,7 +24,7 @@ import { NodeCatalog } from "./components/NodeCatalog";
 import { NodeProperties } from "./components/NodeProperties";
 import { SynopticFlow } from "./components/SynopticFlow";
 
-export default function Synoptic() {
+function SynopticContent() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
@@ -136,9 +137,25 @@ export default function Synoptic() {
   }, []);
 
   return (
-    <div className="flex w-full h-screen bg-background font-sans">
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+        height: "100vh",
+        fontFamily: "sans-serif",
+        backgroundColor: "white",
+      }}
+    >
       {/* Zone principale du ReactFlow */}
-      <div className="flex-1 h-full relative border-r border-gray-200">
+      <div
+        style={{
+          flex: "1",
+          height: "100%",
+          position: "relative",
+          borderRight: "1px solid #e5e7eb",
+          boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+        }}
+      >
         <SynopticFlow
           nodes={nodes}
           edges={edges}
@@ -156,8 +173,14 @@ export default function Synoptic() {
 
       {/* Panneau latéral */}
       <div
-        style={{ width: "400px" }}
-        className="flex-none h-full bg-card overflow-y-auto shadow-md"
+        style={{
+          width: "400px",
+          height: "100%",
+          overflowY: "auto",
+          boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
+          backgroundColor: "white",
+          borderLeft: "1px solid #e5e7eb",
+        }}
       >
         {/* Afficher les propriétés si un nœud est sélectionné, sinon afficher le catalogue */}
         {selectedNode ? (
@@ -170,5 +193,13 @@ export default function Synoptic() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function Synoptic() {
+  return (
+    <ReactFlowProvider>
+      <SynopticContent />
+    </ReactFlowProvider>
   );
 }

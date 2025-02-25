@@ -16,20 +16,20 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
 
   return (
     <div className="p-4">
-      <Card className="shadow-none border-none">
+      <Card className="bg-white border border-gray-200 rounded-lg shadow-sm">
         <CardHeader className="pb-3">
-          <CardTitle className="text-xl font-semibold text-foreground flex items-center gap-2">
+          <CardTitle className="text-xl font-semibold flex items-center gap-2">
             {selectedNode.type === "tankNode" && (
-              <span className="text-blue-500 text-xl">🔵</span>
+              <span className="text-xl text-blue-500">🔵</span>
             )}
             {selectedNode.type === "valveNode" && (
-              <span className="text-green-500 text-xl">➕</span>
+              <span className="text-xl text-green-500">➕</span>
             )}
             {selectedNode.type === "pumpNode" && (
-              <span className="text-amber-500 text-xl">⏱️</span>
+              <span className="text-xl text-amber-500">⏱️</span>
             )}
             {selectedNode.type === "sensorNode" && (
-              <span className="text-red-500 text-xl">🌡️</span>
+              <span className="text-xl text-red-500">🌡️</span>
             )}
             {selectedNode.data.label}
           </CardTitle>
@@ -39,9 +39,7 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
             {selectedNode.type === "tankNode" && (
               <>
                 <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium text-foreground">
-                    Niveau (%)
-                  </label>
+                  <label className="text-sm font-medium">Niveau (%)</label>
                   <div className="flex items-center gap-4">
                     <input
                       type="range"
@@ -53,9 +51,9 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
                           level: parseInt(e.target.value),
                         })
                       }
-                      className="w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer accent-primary"
+                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                     />
-                    <span className="text-sm font-medium bg-primary text-primary-foreground px-2 py-1 rounded-md min-w-[3rem] text-center">
+                    <span className="text-sm font-medium bg-blue-600 text-white px-2 py-1 rounded-md min-w-[3rem] text-center">
                       {selectedNode.data.level}%
                     </span>
                   </div>
@@ -66,9 +64,7 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
             {selectedNode.type === "valveNode" && (
               <>
                 <div className="flex flex-col gap-3">
-                  <label className="text-sm font-medium text-foreground">
-                    État
-                  </label>
+                  <label className="text-sm font-medium">État</label>
                   <div className="flex gap-2">
                     <Button
                       onClick={() =>
@@ -102,9 +98,7 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
             {selectedNode.type === "pumpNode" && (
               <>
                 <div className="flex flex-col gap-3">
-                  <label className="text-sm font-medium text-foreground">
-                    État
-                  </label>
+                  <label className="text-sm font-medium">État</label>
                   <div className="flex gap-2">
                     <Button
                       onClick={() =>
@@ -140,9 +134,7 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
             {selectedNode.type === "sensorNode" && (
               <>
                 <div className="flex flex-col gap-3">
-                  <label className="text-sm font-medium text-foreground">
-                    Valeur
-                  </label>
+                  <label className="text-sm font-medium">Valeur</label>
                   <div className="flex gap-2">
                     <input
                       type="number"
@@ -152,7 +144,7 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
                           value: parseFloat(e.target.value),
                         })
                       }
-                      className="flex-1 border border-gray-200 bg-background rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                      className="flex-1 border border-gray-200 bg-white rounded-md px-3 py-2 text-sm"
                     />
                     <input
                       type="text"
@@ -162,7 +154,7 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
                           unit: e.target.value,
                         })
                       }
-                      className="w-16 border border-gray-200 bg-background rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                      className="w-16 border border-gray-200 bg-white rounded-md px-3 py-2 text-sm"
                       placeholder="Unité"
                     />
                   </div>

@@ -42,7 +42,7 @@ export const SynopticFlow: React.FC<SynopticFlowProps> = ({
   onDragOver,
 }) => {
   return (
-    <div className="w-full h-full relative">
+    <div style={{ width: "100%", height: "100%", position: "relative" }}>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -56,13 +56,13 @@ export const SynopticFlow: React.FC<SynopticFlowProps> = ({
         onDrop={onDrop}
         onDragOver={onDragOver}
         fitView
-        className="w-full h-full"
+        style={{ width: "100%", height: "100%" }}
         proOptions={{ hideAttribution: true }}
       >
-        <Controls className="bg-card border border-gray-200 shadow-md rounded-md" />
+        <Controls className="border border-gray-200 rounded-md shadow-md bg-white" />
         <MiniMap
-          className="bg-card border border-gray-200 shadow-md rounded-md"
-          nodeBorderRadius={2}
+          className="border border-gray-200 rounded-md shadow-md bg-white"
+          nodeBorderRadius={4}
           nodeColor={(node) => {
             switch (node.type) {
               case "tankNode":
