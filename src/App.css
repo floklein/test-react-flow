@@ -1,0 +1,37 @@
+/* Styles pour React Flow */
+.react-flow__container {
+  width: 100%;
+  height: 100%;
+}
+
+.react-flow__node {
+  cursor: pointer;
+}
+
+/* Styles pour l'application */
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Styles pour les nœuds personnalisés */
+.node-tank .react-flow__handle {
+  background-color: #3b82f6;
+}
+
+.node-valve .react-flow__handle {
+  background-color: #3b82f6;
+}
+
+.node-pump .react-flow__handle {
+  background-color: #3b82f6;
+}
+
+.node-sensor .react-flow__handle {
+  background-color: #3b82f6;
+}
