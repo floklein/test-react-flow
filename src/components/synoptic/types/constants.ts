@@ -18,31 +18,31 @@ export const initialNodes: Node[] = [
   {
     id: "tank1",
     type: "tankNode",
-    position: { x: 250, y: 100 },
+    position: { x: 250, y: 50 },
     data: { label: "Réservoir 1", level: 45 },
   },
   {
     id: "valve1",
     type: "valveNode",
-    position: { x: 250, y: 250 },
+    position: { x: 250, y: 300 },
     data: { label: "Vanne 1", isOpen: true },
   },
   {
     id: "pump1",
     type: "pumpNode",
-    position: { x: 100, y: 250 },
+    position: { x: 50, y: 300 },
     data: { label: "Pompe 1", isRunning: true },
   },
   {
     id: "sensor1",
     type: "sensorNode",
-    position: { x: 400, y: 250 },
+    position: { x: 450, y: 300 },
     data: { label: "Capteur 1", value: 48, unit: "°C" },
   },
   {
     id: "tank2",
     type: "tankNode",
-    position: { x: 250, y: 400 },
+    position: { x: 250, y: 550 },
     data: { label: "Réservoir 2", level: 50 },
   },
 ];
