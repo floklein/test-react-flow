@@ -137,25 +137,9 @@ function SynopticContent() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        width: "100%",
-        height: "100vh",
-        fontFamily: "sans-serif",
-        backgroundColor: "white",
-      }}
-    >
+    <div className="flex w-full h-screen font-sans bg-white">
       {/* Zone principale du ReactFlow */}
-      <div
-        style={{
-          flex: "1",
-          height: "100%",
-          position: "relative",
-          borderRight: "1px solid #e5e7eb",
-          boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
-        }}
-      >
+      <div className="flex-1 h-full relative border-r border-gray-200 shadow-sm">
         <SynopticFlow
           nodes={nodes}
           edges={edges}
@@ -172,16 +156,7 @@ function SynopticContent() {
       </div>
 
       {/* Panneau latéral */}
-      <div
-        style={{
-          width: "400px",
-          height: "100%",
-          overflowY: "auto",
-          boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-          backgroundColor: "white",
-          borderLeft: "1px solid #e5e7eb",
-        }}
-      >
+      <div className="w-[400px] h-full overflow-y-auto shadow-md bg-white border-l border-gray-200">
         {/* Afficher les propriétés si un nœud est sélectionné, sinon afficher le catalogue */}
         {selectedNode ? (
           <NodeProperties

@@ -28,22 +28,20 @@ function Flow() {
   const [edges] = useEdgesState(initialEdges);
 
   return (
-    <div style={{ width: "100%", height: "100vh", display: "flex" }}>
-      <div style={{ flex: 1, position: "relative" }}>
+    <div className="w-full h-screen flex">
+      <div className="flex-1 relative">
         <ReactFlow
           nodes={nodes}
           edges={edges}
           fitView
-          style={{ width: "100%", height: "100%" }}
+          className="w-full h-full"
         >
           <Controls />
           <MiniMap />
           <Background />
         </ReactFlow>
       </div>
-      <div
-        style={{ width: "400px", backgroundColor: "white", padding: "20px" }}
-      >
+      <div className="w-[400px] bg-white p-5">
         <h2>Right Panel</h2>
         <p>This is a test panel to see if the layout works properly.</p>
       </div>

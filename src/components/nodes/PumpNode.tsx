@@ -9,13 +9,11 @@ interface PumpNodeData {
 function PumpNode({ data }: NodeProps<PumpNodeData>) {
   return (
     <div
-      className="rounded-lg border p-4 shadow-sm min-w-[150px] font-sans"
-      style={{
-        backgroundColor: data.isRunning
-          ? "rgba(251, 191, 36, 0.05)"
-          : "#f3f4f6",
-        borderColor: data.isRunning ? "#fbbf24" : "#e5e7eb",
-      }}
+      className={`rounded-lg border p-4 shadow-sm min-w-[150px] font-sans ${
+        data.isRunning
+          ? "bg-amber-50 border-amber-300"
+          : "bg-gray-100 border-gray-200"
+      }`}
     >
       <div className="flex flex-col">
         <div className="flex items-center justify-center h-8 rounded-t-md">
@@ -23,13 +21,11 @@ function PumpNode({ data }: NodeProps<PumpNodeData>) {
         </div>
         <div className="mt-2 text-center">
           <div
-            className="text-sm font-medium px-2 py-1 rounded-md inline-block"
-            style={{
-              backgroundColor: data.isRunning
-                ? "rgba(251, 191, 36, 0.2)"
-                : "#f3f4f6",
-              color: data.isRunning ? "#92400e" : "#6b7280",
-            }}
+            className={`text-sm font-medium px-2 py-1 rounded-md inline-block ${
+              data.isRunning
+                ? "bg-amber-200 text-amber-800"
+                : "bg-gray-100 text-gray-500"
+            }`}
           >
             {data.isRunning ? "En marche" : "Arrêtée"}
           </div>
@@ -44,9 +40,8 @@ function PumpNode({ data }: NodeProps<PumpNodeData>) {
               strokeLinecap="round"
               strokeLinejoin="round"
               className={`mx-auto transition-all duration-300 ${
-                data.isRunning ? "animate-spin" : ""
+                data.isRunning ? "animate-[spin_3s_linear_infinite]" : ""
               }`}
-              style={{ animationDuration: "3s" }}
             >
               <circle cx="12" cy="12" r="10" />
               <path d="M12 6v6l4 2" />
@@ -59,20 +54,12 @@ function PumpNode({ data }: NodeProps<PumpNodeData>) {
       <Handle
         type="source"
         position={Position.Bottom}
-        className="w-3 h-3 border-2"
-        style={{
-          backgroundColor: "#d97706",
-          borderColor: "white",
-        }}
+        className="w-3 h-3 border-2 bg-amber-600 border-white"
       />
       <Handle
         type="target"
         position={Position.Top}
-        className="w-3 h-3 border-2"
-        style={{
-          backgroundColor: "#d97706",
-          borderColor: "white",
-        }}
+        className="w-3 h-3 border-2 bg-amber-600 border-white"
       />
     </div>
   );

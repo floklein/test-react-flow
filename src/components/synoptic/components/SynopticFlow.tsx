@@ -42,7 +42,7 @@ export const SynopticFlow: React.FC<SynopticFlowProps> = ({
   onDragOver,
 }) => {
   return (
-    <div style={{ width: "100%", height: "100%", position: "relative" }}>
+    <div className="w-full h-full relative">
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -56,7 +56,7 @@ export const SynopticFlow: React.FC<SynopticFlowProps> = ({
         onDrop={onDrop}
         onDragOver={onDragOver}
         fitView
-        style={{ width: "100%", height: "100%" }}
+        className="w-full h-full"
         proOptions={{ hideAttribution: true }}
       >
         <Controls className="border border-gray-200 rounded-md shadow-md bg-white" />

@@ -7,9 +7,6 @@ interface TankNodeData {
 }
 
 function TankNode({ data }: NodeProps<TankNodeData>) {
-  // Calculer la hauteur du liquide en fonction du niveau
-  const liquidHeight = `${data.level}%`;
-
   // Déterminer la couleur du liquide en fonction du niveau
   let liquidColor = "bg-blue-500 bg-opacity-80";
   if (data.level < 20) {
@@ -29,7 +26,7 @@ function TankNode({ data }: NodeProps<TankNodeData>) {
           <div className="w-full h-24 border border-gray-200 rounded-md relative overflow-hidden bg-white">
             <div
               className={`absolute bottom-0 left-0 right-0 ${liquidColor} transition-all duration-300 ease-in-out`}
-              style={{ height: liquidHeight }}
+              style={{ height: `${data.level}%` }}
             />
             {/* Lignes de graduation */}
             <div className="absolute top-0 left-0 right-0 border-b border-dashed h-6" />
@@ -44,20 +41,12 @@ function TankNode({ data }: NodeProps<TankNodeData>) {
       <Handle
         type="source"
         position={Position.Bottom}
-        className="w-3 h-3 border-2"
-        style={{
-          backgroundColor: "#3b82f6",
-          borderColor: "white",
-        }}
+        className="w-3 h-3 border-2 bg-blue-500 border-white"
       />
       <Handle
         type="target"
         position={Position.Top}
-        className="w-3 h-3 border-2"
-        style={{
-          backgroundColor: "#3b82f6",
-          borderColor: "white",
-        }}
+        className="w-3 h-3 border-2 bg-blue-500 border-white"
       />
     </div>
   );
