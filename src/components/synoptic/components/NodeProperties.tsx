@@ -1,7 +1,10 @@
 import React from "react";
 import { Node } from "reactflow";
-import { Button } from "../../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
+import { Input } from "../../ui/input";
+import { Label } from "../../ui/label";
+import { Slider } from "../../ui/slider";
+import { Switch } from "../../ui/switch";
 
 interface NodePropertiesProps {
   selectedNode: Node | null;
@@ -39,19 +42,17 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
             {selectedNode.type === "tankNode" && (
               <>
                 <div className="flex flex-col gap-2">
-                  <label className="text-sm font-medium">Niveau (%)</label>
+                  <Label>Niveau (%)</Label>
                   <div className="flex items-center gap-4">
-                    <input
-                      type="range"
-                      min="0"
-                      max="100"
-                      value={selectedNode.data.level}
-                      onChange={(e) =>
+                    <Slider
+                      min={0}
+                      max={100}
+                      value={[selectedNode.data.level]}
+                      onValueChange={(values) =>
                         updateNodeData(selectedNode.id, {
-                          level: parseInt(e.target.value),
+                          level: values[0],
                         })
                       }
-                      className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                     />
                     <span className="text-sm font-medium bg-blue-600 text-white px-2 py-1 rounded-md min-w-[3rem] text-center">
                       {selectedNode.data.level}%
@@ -64,32 +65,32 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
             {selectedNode.type === "valveNode" && (
               <>
                 <div className="flex flex-col gap-3">
-                  <label className="text-sm font-medium">État</label>
-                  <div className="flex gap-2">
-                    <Button
-                      onClick={() =>
-                        updateNodeData(selectedNode.id, {
-                          isOpen: true,
-                        })
-                      }
-                      variant={selectedNode.data.isOpen ? "default" : "outline"}
-                      className="flex-1"
-                    >
-                      Ouverte
-                    </Button>
-                    <Button
-                      onClick={() =>
-                        updateNodeData(selectedNode.id, {
-                          isOpen: false,
-                        })
-                      }
-                      variant={
-                        !selectedNode.data.isOpen ? "default" : "outline"
-                      }
-                      className="flex-1"
-                    >
-                      Fermée
-                    </Button>
+                  <Label>État</Label>
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center flex-1 justify-between">
+                      <div className="flex items-center gap-2">
+                        <Switch
+                          checked={selectedNode.data.isOpen}
+                          onCheckedChange={(checked) =>
+                            updateNodeData(selectedNode.id, {
+                              isOpen: checked,
+                            })
+                          }
+                        />
+                        <span className="text-sm font-medium">
+                          {selectedNode.data.isOpen ? "Ouverte" : "Fermée"}
+                        </span>
+                      </div>
+                      <span
+                        className={`px-2 py-1 rounded-md text-xs font-medium ${
+                          selectedNode.data.isOpen
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
+                      >
+                        {selectedNode.data.isOpen ? "ON" : "OFF"}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </>
@@ -98,34 +99,34 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
             {selectedNode.type === "pumpNode" && (
               <>
                 <div className="flex flex-col gap-3">
-                  <label className="text-sm font-medium">État</label>
-                  <div className="flex gap-2">
-                    <Button
-                      onClick={() =>
-                        updateNodeData(selectedNode.id, {
-                          isRunning: true,
-                        })
-                      }
-                      variant={
-                        selectedNode.data.isRunning ? "default" : "outline"
-                      }
-                      className="flex-1"
-                    >
-                      En marche
-                    </Button>
-                    <Button
-                      onClick={() =>
-                        updateNodeData(selectedNode.id, {
-                          isRunning: false,
-                        })
-                      }
-                      variant={
-                        !selectedNode.data.isRunning ? "default" : "outline"
-                      }
-                      className="flex-1"
-                    >
-                      Arrêtée
-                    </Button>
+                  <Label>État</Label>
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center flex-1 justify-between">
+                      <div className="flex items-center gap-2">
+                        <Switch
+                          checked={selectedNode.data.isRunning}
+                          onCheckedChange={(checked) =>
+                            updateNodeData(selectedNode.id, {
+                              isRunning: checked,
+                            })
+                          }
+                        />
+                        <span className="text-sm font-medium">
+                          {selectedNode.data.isRunning
+                            ? "En marche"
+                            : "Arrêtée"}
+                        </span>
+                      </div>
+                      <span
+                        className={`px-2 py-1 rounded-md text-xs font-medium ${
+                          selectedNode.data.isRunning
+                            ? "bg-green-100 text-green-800"
+                            : "bg-red-100 text-red-800"
+                        }`}
+                      >
+                        {selectedNode.data.isRunning ? "ON" : "OFF"}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </>
@@ -134,9 +135,9 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
             {selectedNode.type === "sensorNode" && (
               <>
                 <div className="flex flex-col gap-3">
-                  <label className="text-sm font-medium">Valeur</label>
+                  <Label>Valeur</Label>
                   <div className="flex gap-2">
-                    <input
+                    <Input
                       type="number"
                       value={selectedNode.data.value}
                       onChange={(e) =>
@@ -144,9 +145,9 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
                           value: parseFloat(e.target.value),
                         })
                       }
-                      className="flex-1 border border-gray-200 bg-white rounded-md px-3 py-2 text-sm"
+                      className="flex-1"
                     />
-                    <input
+                    <Input
                       type="text"
                       value={selectedNode.data.unit}
                       onChange={(e) =>
@@ -154,7 +155,7 @@ export const NodeProperties: React.FC<NodePropertiesProps> = ({
                           unit: e.target.value,
                         })
                       }
-                      className="w-16 border border-gray-200 bg-white rounded-md px-3 py-2 text-sm"
+                      className="w-16"
                       placeholder="Unité"
                     />
                   </div>
